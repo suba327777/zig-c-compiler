@@ -1,6 +1,7 @@
 const std = @import("std");
 
 pub fn main() !void {
+    const stdout = std.io.getStdOut().writer();
     const allocator = std.heap.page_allocator;
     const args = try std.process.argsAlloc(allocator);
     defer std.process.argsFree(allocator, args);
@@ -10,5 +11,9 @@ pub fn main() !void {
         return;
     }
 
-    std.debug.print("1つ目の引数:{s}\n", .{args[1]});
+    try stdout.print(".text\n", .{});
+    try stdout.print(".global _main\n", .{});
+    try stdout.print("_main\n", .{});
+    try stdout.print("mov x0 ,#{s}\n", .{args[1]});
+    try stdout.print("ret\n", .{});
 }
