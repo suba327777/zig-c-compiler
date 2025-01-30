@@ -13,7 +13,7 @@ pub fn main() !void {
 
     try stdout.print(".text\n", .{});
     try stdout.print(".global _main\n", .{});
-    try stdout.print("_main\n", .{});
+    try stdout.print("_main:\n", .{});
     try stdout.print("mov x0 ,#{s}\n", .{args[1]});
     try stdout.print("ret\n", .{});
 }
